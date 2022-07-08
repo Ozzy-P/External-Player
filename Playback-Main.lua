@@ -49,9 +49,19 @@ local Circle_3 = Instance.new("ImageLabel")
 local Status = Instance.new("ImageLabel")
 local UIAspectRatioConstraint_11 = Instance.new("UIAspectRatioConstraint")
 
+
+if not isfile("Fire In The Night.webm") then
+    local url = 'https://raw.githubusercontent.com/Ozzy-P/External-Player/main/Fire%20In%20The%20Night%20(Compressed)-LQ.webm'
+    writefile('Fire In The Night.webm', syn.request({Url=url}).Body)
+    warn("Downloading webm...")
+else
+    print("Fetching content...")
+end
+
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = game:WaitForChild("CoreGui")
+ScreenGui.Name = "Youtube"
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Version.Name = "Version"
@@ -140,10 +150,12 @@ Video.Parent = ScreenGui
 Video.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Video.BackgroundTransparency = 1.000
 Video.BorderSizePixel = 0
-Video.Position = UDim2.new(0.0529999994, 0, 0.0729999989, 0)
+Video.Position = UDim2.new(0, 550, 0, 450)
 Video.Size = UDim2.new(0.893999994, 0, 0.851999998, 0)
---Video.Video = "rbxasset://Fire In The Night [Amv]-1.webm"
-Video.Video = "rbxasset://Fire In The Night (Compressed)-LQ.webm"
+--Video.Video = "rbxasset://Fire In The Night [Amv](255mb)-1.webm"
+--Video.Video = "rbxasset://Fire In The Night (Compressed)(24mb)-LQ.webm"
+Video.Video = getsynasset("Fire In The Night.webm")
+
 
 Menu.Name = "Menu"
 Menu.Parent = Video
@@ -327,6 +339,7 @@ AggressiveVideoHealth.Position = UDim2.new(0.00963399187, 0, 1.0156734, 0)
 AggressiveVideoHealth.Size = UDim2.new(0.0314783193, 0, 0.0547147207, 0)
 AggressiveVideoHealth.Image = "rbxassetid://1264515756"
 AggressiveVideoHealth.ImageColor3 = Color3.fromRGB(255, 75, 75)
+AggressiveVideoHealth.Visible = false
 
 UIAspectRatioConstraint_9.Parent = AggressiveVideoHealth
 
@@ -343,9 +356,11 @@ DEBUG.TextScaled = true
 DEBUG.TextSize = 14.000
 DEBUG.TextStrokeTransparency = 0.000
 DEBUG.TextWrapped = true
+DEBUG.Visible = false
 
 VideoSize.Name = "Video Size"
 VideoSize.Parent = Video
+VideoSize.Scale = .4
 
 Interactive_2.Name = "Interactive"
 Interactive_2.Parent = Video
