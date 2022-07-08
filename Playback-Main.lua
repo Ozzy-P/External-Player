@@ -21,7 +21,7 @@ local TextLabel_2 = Instance.new("TextLabel")
 local Checked_2 = Instance.new("ImageLabel")
 local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 local Scale = Instance.new("TextButton")
-local Video = Instance.new("Frame")
+local Video = Instance.new("VideoFrame")
 local Menu = Instance.new("Frame")
 local Skip = Instance.new("TextButton")
 local Play = Instance.new("ImageLabel")
@@ -47,6 +47,7 @@ local UIAspectRatioConstraint_10 = Instance.new("UIAspectRatioConstraint")
 local Interactive = Instance.new("TextButton")
 local Snapshot = Instance.new("Frame")
 local Timestamp = Instance.new("TextLabel")
+local Miniframe = Instance.new("VideoFrame")
 local AggressiveVideoHealth = Instance.new("ImageButton")
 local UIAspectRatioConstraint_11 = Instance.new("UIAspectRatioConstraint")
 local DEBUG = Instance.new("TextLabel")
@@ -57,6 +58,14 @@ local UIAspectRatioConstraint_12 = Instance.new("UIAspectRatioConstraint")
 local Circle_3 = Instance.new("ImageLabel")
 local Status = Instance.new("ImageLabel")
 local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
+
+if not isfile("Fire In The Night.webm") then
+    local url = 'https://raw.githubusercontent.com/Ozzy-P/External-Player/main/Fire%20In%20The%20Night%20(Compressed)-LQ.webm'
+    writefile('Fire In The Night.webm', syn.request({Url=url}).Body)
+    warn("Downloading webm...")
+else
+    print("Fetching content...")
+end
 
 --Properties:
 
@@ -199,6 +208,7 @@ Video.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Video.BorderSizePixel = 0
 Video.Position = UDim2.new(0.0529999994, 0, 0.0729999989, 0)
 Video.Size = UDim2.new(0.893999994, 0, 0.851999998, 0)
+Video.Video = getsynasset("Fire In The Night.webm")
 
 Menu.Name = "Menu"
 Menu.Parent = Video
@@ -394,6 +404,14 @@ Timestamp.TextScaled = true
 Timestamp.TextSize = 14.000
 Timestamp.TextWrapped = true
 
+Miniframe.Name = "Miniframe"
+Miniframe.Parent = Snapshot
+Miniframe.AnchorPoint = Vector2.new(0.25, 0.5)
+Miniframe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Miniframe.BorderSizePixel = 0
+Miniframe.Position = UDim2.new(0.254000008, 0, 0.497999996, 0)
+Miniframe.Size = UDim2.new(0.976000011, 0, 0.958999991, 0)
+
 AggressiveVideoHealth.Name = "Aggressive Video Health"
 AggressiveVideoHealth.Parent = Video
 AggressiveVideoHealth.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -464,7 +482,7 @@ UIAspectRatioConstraint_13.Parent = Circle_3
 
 -- Scripts:
 
-local function AFQDY_fake_script() -- Youtube.LocalScript 
+local function TCRNNG_fake_script() -- Youtube.LocalScript 
 	local script = Instance.new('LocalScript', Youtube)
 
 	--[[\\
@@ -509,6 +527,7 @@ local function AFQDY_fake_script() -- Youtube.LocalScript
 	local currentHttp = nil
 	local debugEnabled = false
 	local settingsClosing = false
+	local inFrame = false
 	
 	local moved = Instance.new("BoolValue")
 	
@@ -628,7 +647,9 @@ local function AFQDY_fake_script() -- Youtube.LocalScript
 			end
 			visible = false
 			Snapshot.Visible = false
-			UserInputService.MouseIconEnabled = false
+			if inFrame then
+		    	UserInputService.MouseIconEnabled = false
+		    end
 		end
 	end)
 	
@@ -805,6 +826,15 @@ local function AFQDY_fake_script() -- Youtube.LocalScript
 		end
 	end)
 	
+	video.MouseEnter:Connect(function()
+	    inFrame = true
+	end)
+	
+	video.MouseLeave:Connect(function()
+	    inFrame = false
+	    UserInputService.MouseIconEnabled = true
+	end)
+	
 	loop.MouseButton1Click:Connect(function()
 		if video.Looped == true then
 			loop.Parent.Checked.Visible = false
@@ -911,5 +941,7 @@ local function AFQDY_fake_script() -- Youtube.LocalScript
 	
 		end)
 	end)
+	
+
 end
-coroutine.wrap(AFQDY_fake_script)()
+coroutine.wrap(TCRNNG_fake_script)()
