@@ -56,6 +56,11 @@ game:GetService("RunService").Stepped:Connect(function()
 			playbackStatus.Image = "rbxassetid://10151386010"
 		end
 	end
+	if video.Volume == 0 then
+		sound.Image = "rbxassetid://1865563715"
+	else
+		sound.Image = "rbxassetid://1865563029"
+	end
 end)
 
 local function checkVideoHealth()
@@ -146,10 +151,8 @@ end)
 sound.MouseButton1Click:Connect(function()
 	if video.Volume == 0 then
 		video.Volume = 1
-		sound.Image = "rbxassetid://1865563029"
 	else
 		video.Volume = 0
-		sound.Image = "rbxassetid://1865563715"
 		local tweenS = game:GetService("TweenService"):Create(
 			video.Menu.SoundVolume,
 			TweenInfo.new(.15),
