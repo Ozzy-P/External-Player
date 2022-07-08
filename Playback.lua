@@ -191,8 +191,9 @@ playback_.MouseButton1Down:Connect(function()
 	video:Pause()
 	moving = video.MouseMoved:Connect(function()
 		local mouseLocation = UserInputService:GetMouseLocation() - video.AbsolutePosition
-		video.TimePosition = video.TimeLength * ((mouseLocation.X*.85) / (video.AbsoluteSize.X*.85))
-		--playback.Size = UDim2.new((mouseLocation.X*.85) / (video.AbsoluteSize.X*.85),0,1,0)
+		video.TimePosition = video.TimeLength * ((mouseLocation.X) / (video.Menu.Playback.AbsoluteSize.X))
+		--playback.Size = UDim2.new((mouseLocation.X) / (video.AbsoluteSize.X),0,1,0)
+		playback.Size = UDim2.new((mouseLocation.X) / (video.AbsoluteSize.X),0,1,0)
 	end)
 
 	ended = UserInputService.InputEnded:Connect(function(input)
@@ -233,6 +234,7 @@ ended = UserInputService.InputBegan:Connect(function(input,observable)
 	local location = UserInputService:GetMouseLocation()
 	-- Make sure user is in a reasonable range of the video player to display context menu
 	if input.UserInputType == Enum.UserInputType.MouseButton2 and (location.X - video.AbsolutePosition.X > 0 and location.X - video.AbsolutePosition.X < video.AbsoluteSize.X) and (location.Y - video.AbsolutePosition.Y > 0 and location.Y - video.AbsolutePosition.Y < video.AbsoluteSize.Y) then
+		settings.Visible = true
 		settings.Position = UDim2.new(0,location.X,0,location.Y)
 		for _,v in pairs(settings["1"]:GetDescendants()) do
 			if v ~= loop then
@@ -248,6 +250,8 @@ ended = UserInputService.InputBegan:Connect(function(input,observable)
 			end
 		end
 		tweenTransparency(settings.BG,.1,1)
+		task.wait(.1)
+		settings.Visible = false
 	end
 end)
 
