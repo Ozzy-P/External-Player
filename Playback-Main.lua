@@ -77,6 +77,7 @@ Context.BorderSizePixel = 0
 Context.Position = UDim2.new(0.297577858, 0, 0.227949619, 0)
 Context.Size = UDim2.new(0.109750398, 0, 0.283844203, 0)
 Context.Visible = false
+Context.ZIndex = 2
 
 _1.Name = "1"
 _1.Parent = Context
