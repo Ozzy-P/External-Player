@@ -62,7 +62,7 @@ print("Youtube-dl v1.4.6")
 
 if not isfile("Fire In The Night HQ.webm") then
     local url = 'https://raw.githubusercontent.com/Ozzy-P/External-Player/main/Fire%20In%20The%20Night%5BAMV%5DHQ.webm'
-    writefile('Fire In The Night HQ.webm', syn.request({Url=url}).Body or http.request({Url=url} or http_request(request({Url=url})
+    writefile('Fire In The Night HQ.webm', syn.request({Url=url}).Body or http.request({Url=url}).Body or http_request(request({Url=url})).Body)
     warn("Downloading webm...")
 else
     print("Fetching content...")
