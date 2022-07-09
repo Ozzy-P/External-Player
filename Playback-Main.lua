@@ -62,15 +62,18 @@ print("Youtube-dl v1.4.6")
 
 if not isfile("Fire In The Night HQ.webm") then
     local url = 'https://raw.githubusercontent.com/Ozzy-P/External-Player/main/Fire%20In%20The%20Night%5BAMV%5DHQ.webm'
-    writefile('Fire In The Night HQ.webm', syn.request({Url=url}).Body)
+    writefile('Fire In The Night HQ.webm', syn.request({Url=url}).Body or http.request({Url=url} or http_request(request({Url=url})
     warn("Downloading webm...")
 else
     print("Fetching content...")
 end
 
+local protect_gui = syn.protect_gui or function()return;end
+
 --Properties:
 
 Youtube.Name = "Youtube"
+protect_gui(Youtube)
 Youtube.Parent = game:GetService("CoreGui")
 Youtube.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -209,7 +212,7 @@ Video.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Video.BorderSizePixel = 0
 Video.Position = UDim2.new(0.0529999994, 0, 0.0729999989, 0)
 Video.Size = UDim2.new(0.893999994, 0, 0.851999998, 0)
-Video.Video = getsynasset("Fire In The Night HQ.webm")
+Video.Video = getsynasset("Fire In The Night HQ.webm") or getcustomasset("Fire In The Night HQ.webm")
 
 Menu.Name = "Menu"
 Menu.Parent = Video
@@ -606,7 +609,7 @@ local function TCRNNG_fake_script() -- Youtube.LocalScript
 		local typeRef = ref[obj.ClassName]
 		if typeRef == nil or _[obj] then return end
 		for _,property in pairs(typeRef) do
-			local tweenT = game:GetService("TweenService"):Create(
+			local tweenT = tweenService:Create(
 			obj,
 			TweenInfo.new(timeTween),
 			{[property] = value}
@@ -661,14 +664,14 @@ local function TCRNNG_fake_script() -- Youtube.LocalScript
 			video.Volume = 1
 		else
 			video.Volume = 0
-			local tweenS = game:GetService("TweenService"):Create(
+			local tweenS = tweenService:Create(
 				video.Menu.SoundVolume,
 				TweenInfo.new(.15),
 				{Size = UDim2.new(0, 0, 0.1, 0)
 			}
 			)
 			tweenS:Play()
-			local tweenT = game:GetService("TweenService"):Create(
+			local tweenT = tweenService:Create(
 				video.Menu.Time,
 				TweenInfo.new(.15),
 				{Position = TimerPosition}
@@ -686,22 +689,22 @@ local function TCRNNG_fake_script() -- Youtube.LocalScript
 			playstatus.Circle.Status.Image = "rbxassetid://10151386010"
 			video:Pause()
 		end
-		local tweenC = game:GetService("TweenService"):Create(
+		local tweenC = tweenService:Create(
 			playstatus.Circle,
 			TweenInfo.new(.25),
 			{ImageTransparency = 0.25}
 		)
-		local tweenS = game:GetService("TweenService"):Create(
+		local tweenS = tweenService:Create(
 			playstatus.Circle.Status,
 			TweenInfo.new(.25),
 			{ImageTransparency = 0.25}
 		)
-		local tweenCF = game:GetService("TweenService"):Create(
+		local tweenCF = tweenService:Create(
 			playstatus.Circle,
 				TweenInfo.new(.15),
 			{ImageTransparency = 1}
 		)
-		local tweenSF = game:GetService("TweenService"):Create(
+		local tweenSF = tweenService:Create(
 			playstatus.Circle.Status,
 			TweenInfo.new(.15),
 			{ImageTransparency = 1}
@@ -880,13 +883,13 @@ local function TCRNNG_fake_script() -- Youtube.LocalScript
 	
 	sound.MouseEnter:Connect(function()
 		if video.Volume == 0 then return end
-		local tweenS = game:GetService("TweenService"):Create(
+		local tweenS = tweenService:Create(
 			video.Menu.SoundVolume,
 			TweenInfo.new(.15),
 			{Size = SoundbarSize}
 		)
 		tweenS:Play()
-		local tweenT = game:GetService("TweenService"):Create(
+		local tweenT = tweenService:Create(
 			video.Menu.Time,
 			TweenInfo.new(.15),
 			{Position = TimerPosition + UDim2.new(.034,0,0,0)}
@@ -897,14 +900,14 @@ local function TCRNNG_fake_script() -- Youtube.LocalScript
 	
 	
 	video.Menu.MouseLeave:Connect(function()
-		local tweenS = game:GetService("TweenService"):Create(
+		local tweenS = tweenService:Create(
 			video.Menu.SoundVolume,
 			TweenInfo.new(.15),
 			{Size = UDim2.new(0, 0, 0.1, 0)
 		}
 		)
 		tweenS:Play()
-		local tweenT = game:GetService("TweenService"):Create(
+		local tweenT = tweenService:Create(
 			video.Menu.Time,
 			TweenInfo.new(.15),
 			{Position = TimerPosition}
