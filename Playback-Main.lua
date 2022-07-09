@@ -58,10 +58,11 @@ local UIAspectRatioConstraint_12 = Instance.new("UIAspectRatioConstraint")
 local Circle_3 = Instance.new("ImageLabel")
 local Status = Instance.new("ImageLabel")
 local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
+print("Youtube-dl v1.4.6")
 
-if not isfile("Fire In The Night.webm") then
-    local url = 'https://raw.githubusercontent.com/Ozzy-P/External-Player/main/Fire%20In%20The%20Night%20(Compressed)-LQ.webm'
-    writefile('Fire In The Night.webm', syn.request({Url=url}).Body)
+if not isfile("Fire In The Night HQ.webm") then
+    local url = 'https://raw.githubusercontent.com/Ozzy-P/External-Player/main/Fire%20In%20The%20Night%5BAMV%5DHQ.webm'
+    writefile('Fire In The Night HQ.webm', syn.request({Url=url}).Body)
     warn("Downloading webm...")
 else
     print("Fetching content...")
@@ -70,7 +71,7 @@ end
 --Properties:
 
 Youtube.Name = "Youtube"
-Youtube.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Youtube.Parent = game:GetService("CoreGui")
 Youtube.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Version.Name = "Version"
@@ -80,7 +81,7 @@ Version.BackgroundTransparency = 1.000
 Version.Position = UDim2.new(0, 0, 0.972292185, 0)
 Version.Size = UDim2.new(0.0407895371, 0, 0.0270629413, 0)
 Version.Font = Enum.Font.Roboto
-Version.Text = "v1.4.1"
+Version.Text = "v1.4.6"
 Version.TextColor3 = Color3.fromRGB(0, 0, 0)
 Version.TextScaled = true
 Version.TextSize = 14.000
@@ -208,7 +209,7 @@ Video.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Video.BorderSizePixel = 0
 Video.Position = UDim2.new(0.0529999994, 0, 0.0729999989, 0)
 Video.Size = UDim2.new(0.893999994, 0, 0.851999998, 0)
-Video.Video = getsynasset("Fire In The Night.webm")
+Video.Video = getsynasset("Fire In The Night HQ.webm")
 
 Menu.Name = "Menu"
 Menu.Parent = Video
@@ -420,6 +421,7 @@ AggressiveVideoHealth.Position = UDim2.new(0.00963399187, 0, 1.0156734, 0)
 AggressiveVideoHealth.Size = UDim2.new(0.0314783193, 0, 0.0547147207, 0)
 AggressiveVideoHealth.Image = "rbxassetid://1264515756"
 AggressiveVideoHealth.ImageColor3 = Color3.fromRGB(255, 75, 75)
+AggressiveVideoHealth.Visible = false
 
 UIAspectRatioConstraint_11.Parent = AggressiveVideoHealth
 
@@ -436,6 +438,7 @@ DEBUG.TextScaled = true
 DEBUG.TextSize = 14.000
 DEBUG.TextStrokeTransparency = 0.000
 DEBUG.TextWrapped = true
+DEBUG.Visible = false
 
 VideoSize.Name = "Video Size"
 VideoSize.Parent = Video
