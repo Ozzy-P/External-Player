@@ -2,7 +2,6 @@
 -- Version: 3.2
 
 -- Instances:
-
 local Youtube = Instance.new("ScreenGui")
 local Version = Instance.new("TextLabel")
 local Context = Instance.new("Frame")
